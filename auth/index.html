@@ -1,14 +1,13 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>AM PRO Auth</title>
+<title>AM PRO | الدخول</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest"></script>
 <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <div class="glow g1"></div>
@@ -20,84 +19,56 @@
 </div>
 
 <div class="card">
-
   <div class="top">
-    <i data-lucide="lock"></i>
+    <i data-lucide="lock" style="width: 40px; height: 40px; margin-bottom: 10px;"></i>
     <h1>AM PRO Login</h1>
   </div>
 
   <div class="tabs">
-    <div class="tab active" onclick="switchTab(event,'login')">Login</div>
-    <div class="tab" onclick="switchTab(event,'signup')">Create Account</div>
+    <div class="tab active" onclick="switchTab(event,'login')">تسجيل الدخول</div>
+    <div class="tab" onclick="switchTab(event,'signup')">إنشاء حساب</div>
   </div>
 
   <div id="loginBox">
     <div class="input">
       <i data-lucide="mail" class="leftIcon"></i>
-      <input id="loginEmail" type="email" placeholder="Email" autocomplete="email">
+      <input id="loginEmail" type="email" placeholder="البريد الإلكتروني">
     </div>
-
     <div class="input">
       <i data-lucide="lock" class="leftIcon"></i>
-      <input id="loginPass" type="password" placeholder="Password" autocomplete="current-password">
+      <input id="loginPass" type="password" placeholder="كلمة المرور">
     </div>
-
-    <button onclick="login()">Login</button>
+    <button onclick="login()">دخول</button>
   </div>
 
   <div id="signupBox" class="hidden">
-
-    <div class="input">
-      <i data-lucide="user" class="leftIcon"></i>
-      <input id="name" placeholder="Full Name" autocomplete="name">
-    </div>
-
-    <div class="input">
-      <i data-lucide="at-sign" class="leftIcon"></i>
-      <input id="username" placeholder="Username" autocomplete="username">
-    </div>
-
+    <div class="input"><i data-lucide="user" class="leftIcon"></i><input id="name" placeholder="الاسم الكامل"></div>
+    <div class="input"><i data-lucide="at-sign" class="leftIcon"></i><input id="username" placeholder="اسم المستخدم"></div>
     <div class="input">
       <i data-lucide="users" class="leftIcon"></i>
       <select id="gender">
-        <option value="">Gender</option>
-        <option>Male</option>
-        <option>Female</option>
+        <option value="">الجنس</option>
+        <option value="Male">ذكر</option>
+        <option value="Female">أنثى</option>
       </select>
     </div>
-
     <div class="input">
       <i data-lucide="layers" class="leftIcon"></i>
       <select id="field">
-        <option value="">Field</option>
+        <option value="">المجال</option>
         <option>Programming</option>
         <option>Content Creation</option>
         <option>Sports</option>
       </select>
     </div>
-
-    <div class="input">
-      <i data-lucide="mail" class="leftIcon"></i>
-      <input id="email" type="email" placeholder="Email" autocomplete="email">
-    </div>
-
-    <div class="input">
-      <i data-lucide="lock" class="leftIcon"></i>
-      <input id="pass" type="password" placeholder="Password" autocomplete="new-password">
-    </div>
-
-    <div class="input">
-      <i data-lucide="shield-check" class="leftIcon"></i>
-      <input id="confirmPass" type="password" placeholder="Confirm Password" autocomplete="new-password">
-    </div>
-
-    <button onclick="signup()">Create Account</button>
+    <div class="input"><i data-lucide="mail" class="leftIcon"></i><input id="email" type="email" placeholder="البريد الإلكتروني"></div>
+    <div class="input"><i data-lucide="lock" class="leftIcon"></i><input id="pass" type="password" placeholder="كلمة المرور"></div>
+    <div class="input"><i data-lucide="shield-check" class="leftIcon"></i><input id="confirmPass" type="password" placeholder="تأكيد كلمة المرور"></div>
+    <button onclick="signup()">إنشاء حساب</button>
   </div>
-
 </div>
 
 <script type="module" src="script.js"></script>
-
 </body>
-        </html>
+</html>
 
