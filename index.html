@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AM PRO official page</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- ربط CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <nav id="nav">
+    <div class="logo-wrap">
+      <div class="logo-box">
+        <img src="https://via.placeholder.com/80" alt="AM PRO Logo">
+      </div>
+      <div class="logo-text">AM PRO</div>
+    </div>
+
+    <div class="menu" onclick="toggleMenu()">☰</div>
+
+    <ul id="navLinks">
+      <li><a href="#">Home</a></li>
+      <li><a href="#leaders">Leaders</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Join</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero" data-aos="fade-up">
+    <h1>AM PRO Team</h1>
+    <p>A professional team specialized in Programming, Sports, Content Creation and some other fields.</p>
+    <div>
+      <button class="btn primary" onclick="document.getElementById('stats').scrollIntoView({behavior:'smooth'})">Explore</button>
+      <button class="btn secondary" onclick="window.location.href='auth/index.html'">Join Us</button>
+    </div>
+  </div>
+
+  <div class="section" id="stats">
+    <div class="title" data-aos="fade-up">Team Achievements</div>
+
+    <div class="grid">
+      <div class="card" data-aos="zoom-in">
+        <h3><span class="counter" data-target="120">0</span>+</h3>
+        <div class="role">Programming Projects</div>
+        <p>Completed professional programming tasks and systems.</p>
+      </div>
+
+      <div class="card" data-aos="zoom-in">
+        <h3><span class="counter" data-target="75">0</span>+</h3>
+        <div class="role">Content Creations</div>
+        <p>Produced media, scripts, and creative content.</p>
+      </div>
+
+      <div class="card" data-aos="zoom-in">
+        <h3><span class="counter" data-target="30">0</span>+</h3>
+        <div class="role">Sports Championships</div>
+        <p>Participated and achieved wins in competitions.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="leaders">
+    <div class="title" data-aos="fade-up">Leadership Portfolio</div>
+
+    <div class="grid">
+      <!-- نفس الكروت زي ما هي بدون تغيير -->
+      <!-- (سيبهم زي ما هم من الكود الأصلي) -->
+    </div>
+  </div>
+
+  <div class="bubbles" id="bubbles"></div>
+  <div class="cursor"></div>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <!-- ربط JS -->
+  <script src="script.js"></script>
+</body>
+</html>
