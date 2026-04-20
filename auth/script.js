@@ -1,118 +1,125 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import { getFirestore, doc, setDoc, query, where, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
+import {
+  getFirestore,
+  doc,
+  setDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+/* ✅ CONFIG */
 const firebaseConfig = {
-    apiKey: "AIzaSyAuzoaWTXpF6-V2m4_-vZHF5F1Ca8EpDPA",
-    authDomain: "am-portfolyo.firebaseapp.com",
-    databaseURL: "https://am-portfolyo-default-rtdb.firebaseio.com",
-    projectId: "am-portfolyo",
-    storageBucket: "am-portfolyo.firebasestorage.app",
-    messagingSenderId: "982268244536",
-    appId: "1:982268244536:web:b4fbe3ef3de6d3b2846ccd",
-    measurementId: "G-FKHHQPNY7R"
+  apiKey: "AIzaSyCfq-KoLxwmg7WRdxRkqsBVJcR4CDHdAAk",
+  authDomain: "am-pro-76262.firebaseapp.com",
+  projectId: "am-pro-76262",
+  storageBucket: "am-pro-76262.firebasestorage.app",
+  messagingSenderId: "58623671123",
+  appId: "1:58623671123:web:37b00c8b89b26ce8babfa6",
+  measurementId: "G-QGKS12TJ0L"
 };
 
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-function show(msg, type="success"){
-    const box = document.getElementById("notif");
-    const text = document.getElementById("notifText");
-    const icon = box.querySelector("[data-lucide]");
+/* عناصر الصفحة */
+const loginEmail = document.getElementById("loginEmail");
+const loginPass = document.getElementById("loginPass");
 
-    text.innerText = msg;
-    if(icon){
-        if(type === "error"){
-            icon.setAttribute("data-lucide","x-circle");
-        }else{
-            icon.setAttribute("data-lucide","check-circle");
-        }
-    }
-    lucide.createIcons();
-    box.classList.add("show");
-    setTimeout(()=>box.classList.remove("show"),3000);
+const nameInput = document.getElementById("name");
+const usernameInput = document.getElementById("username");
+const genderInput = document.getElementById("gender");
+const fieldInput = document.getElementById("field");
+const emailInput = document.getElementById("email");
+const passInput = document.getElementById("pass");
+const confirmPassInput = document.getElementById("confirmPass");
+
+const loginBox = document.getElementById("loginBox");
+const signupBox = document.getElementById("signupBox");
+
+/* دالة عرض التنبيهات */
+function show(msg, type="success"){
+  const box = document.getElementById("notif");
+  const text = document.getElementById("notifText");
+  const icon = box.querySelector("i");
+
+  text.innerText = msg;
+
+  if(type === "error"){
+    icon.setAttribute("data-lucide","x-circle");
+  }else{
+    icon.setAttribute("data-lucide","check-circle");
+  }
+
+  lucide.createIcons();
+  box.classList.add("show");
+
+  setTimeout(()=>box.classList.remove("show"),3000);
 }
 
-// الدوال تم ربطها بـ window لضمان عمل الـ onclick في الـ HTML
+/* SIGNUP - إنشاء حساب */
 window.signup = async function(){
-    const nameVal = document.getElementById("name").value;
-    const userVal = document.getElementById("username").value;
-    const genderVal = document.getElementById("gender").value;
-    const fieldVal = document.getElementById("field").value;
-    const emailVal = document.getElementById("email").value;
-    const passVal = document.getElementById("pass").value;
-    const confirmVal = document.getElementById("confirmPass").value;
+  if(passInput.value !== confirmPassInput.value){
+    show("Passwords not match","error");
+    return;
+  }
 
-    if(passVal !== confirmVal){
-        show("Passwords not match","error");
-        return;
-    }
+  try{
+    const user = await createUserWithEmailAndPassword(
+      auth,
+      emailInput.value,
+      passInput.value
+    );
 
-    const usernameRegex = /^[a-z0-9_]+$/;
-    if(!usernameRegex.test(userVal)){
-        show("Username must be (a-z, 0-9, _)","error");
-        return;
-    }
+    await setDoc(doc(db,"users",user.user.uid),{
+      uid:user.user.uid,
+      name:nameInput.value,
+      username:usernameInput.value,
+      gender:genderInput.value,
+      field:fieldInput.value,
+      email:emailInput.value
+    });
 
-    try{
-        const q = query(collection(db,"users"), where("username","==",userVal));
-        const snap = await getDocs(q);
+    show("Account Created Successfully","success");
+    // التحويل للداش بورد (الخروج من auth والدخول لـ dashboard)
+    setTimeout(()=>window.location.href="../dashboard/index.html",1500);
 
-        if(!snap.empty){
-            show("This username is already in use.","error");
-            return;
-        }
-
-        const userCredential = await createUserWithEmailAndPassword(auth, emailVal, passVal);  
-        const uid = userCredential.user.uid;      
-
-        await setDoc(doc(db,"users",uid),{      
-            uid:uid,      
-            name:nameVal,      
-            username:userVal,      
-            gender:genderVal,      
-            field:fieldVal,      
-            email:emailVal      
-        });      
-
-        show("account created","success");      
-        setTimeout(()=>window.location.href="dashboard.html",1500);
-
-    } catch(e) {
-        if(e.code === "auth/email-already-in-use"){
-            show("This email address is already in use.","error");
-        }else if(e.code === "auth/invalid-email"){
-            show("The email address is invalid.","error");
-        }else if(e.code === "auth/weak-password"){
-            show("Password must be at least 6 characters.","error");
-        }else{
-            show("Error: " + e.message, "error");
-        }
-    }
+  }catch(e){
+    show(e.message,"error");
+  }
 };
 
+/* LOGIN - تسجيل الدخول */
 window.login = async function(){
-    const loginEmail = document.getElementById("loginEmail").value;
-    const loginPass = document.getElementById("loginPass").value;
-    try{
-        await signInWithEmailAndPassword(auth, loginEmail, loginPass);      
-        show("Welcome Back 👋","success");      
-        setTimeout(()=>window.location.href="dashboard.html",1500);
-    }catch(e){
-        show("Wrong email or password","error");
-    }
+  try{
+    await signInWithEmailAndPassword(
+      auth,
+      loginEmail.value,
+      loginPass.value
+    );
+
+    show("Welcome Back 👋","success");
+    // التحويل للداش بورد
+    setTimeout(()=>window.location.href="../dashboard/index.html",1500);
+
+  }catch(e){
+    show("Wrong email or password","error");
+  }
 };
 
+/* SWITCH TABS - التبديل بين اللوجن والساين أب */
 window.switchTab = function(e,tab){
-    document.getElementById("loginBox").classList.toggle("hidden",tab!=="login");
-    document.getElementById("signupBox").classList.toggle("hidden",tab!=="signup");
-    document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
-    e.target.classList.add("active");
+  loginBox.classList.toggle("hidden",tab!=="login");
+  signupBox.classList.toggle("hidden",tab!=="signup");
+  document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+  e.target.classList.add("active");
 };
 
-// تشغيل الأيقونات لأول مرة
-lucide.createIcons();
+// تفعيل الأيقونات عند التحميل
+window.addEventListener("DOMContentLoaded", () => {
+  lucide.createIcons();
+});
