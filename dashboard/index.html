@@ -1,46 +1,41 @@
 <!doctype html>
-<html lang="ar" dir="rtl">      
-<head>      
-    <meta charset="UTF-8" />      
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>      
+<html lang="ar" dir="rtl">    
+<head>    
+    <meta charset="UTF-8" />    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>    
     <title>AM PRO | Dashboard</title>  
-
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Kufi+Arabic:wght@400;700&display=swap" rel="stylesheet">    
-
-    <link rel="stylesheet" href="dashboard/style.css">
-</head>
-
+    <link rel="stylesheet" href="style.css">
+</head>    
 <body>  
-
-<nav>      
-    <div class="nav-right">      
-        <div class="logo-box">      
-            <img src="logo.png" alt="Team Logo" onerror="this.style.opacity='0'">      
-        </div>      
-        <span class="dashboard-title">AM PRO dashboard</span>      
+<nav>    
+    <div class="nav-right">    
+        <div class="logo-box">    
+            <img src="logo.png" alt="Team Logo" onerror="this.style.opacity='0'">    
+        </div>    
+        <span class="dashboard-title">AM PRO dashboard</span>    
     </div>    
-
-    <div class="nav-left">      
-        <button class="btn-logout" id="logoutBtn">تسجيل الخروج</button>      
-    </div>  
+    <div class="nav-left">    
+        <button class="btn-logout" id="logoutBtn">تسجيل الخروج</button>    
+    </div>
 </nav>    
 
-<div class="container">      
-    <div class="welcome-card">      
-        <div class="welcome-msg" id="greetingText">مرحباً بك</div>      
-        <div class="user-name" id="userName">جاري التحميل...</div>      
-        <div id="userRank" class="rank-display">---</div>      
+<div class="container">    
+    <div class="welcome-card">    
+        <div class="welcome-msg" id="greetingText">مرحباً بك</div>    
+        <div class="user-name" id="userName">جاري التحميل...</div>    
+        <div id="userRank" class="rank-display">---</div>    
     </div>    
 
-    <div class="section-header">      
-        <div class="section-title">المهام الحالية</div>      
-        <div id="taskCount">0 TASKS</div>      
-    </div>      
+    <div class="section-header">    
+        <div class="section-title">المهام الحالية</div>    
+        <div id="taskCount" style="font-size: 12px; color: var(--apple-blue); font-weight: 800;">0 TASKS</div>    
+    </div>    
 
-    <div id="tasksList" class="task-list"></div>  
+    <div id="tasksList" class="task-list"></div>
 </div>    
 
-<script type="module" src="dashboard/script.js"></script>
+<script type="module" src="script.js"></script>  
+</body>    
+            </html>
 
-</body>
-</html>
