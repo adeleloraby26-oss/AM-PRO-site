@@ -1,15 +1,14 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AM PRO Auth</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest"></script>
-
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AM PRO Auth</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <div class="glow g1"></div>
@@ -21,6 +20,7 @@
 </div>
 
 <div class="card">
+
   <div class="top">
     <i data-lucide="lock"></i>
     <h1>AM PRO Login</h1>
@@ -34,26 +34,27 @@
   <div id="loginBox">
     <div class="input">
       <i data-lucide="mail" class="leftIcon"></i>
-      <input id="loginEmail" type="email" placeholder="Email">
+      <input id="loginEmail" type="email" placeholder="Email" autocomplete="email">
     </div>
 
     <div class="input">
       <i data-lucide="lock" class="leftIcon"></i>
-      <input id="loginPass" type="password" placeholder="Password">
+      <input id="loginPass" type="password" placeholder="Password" autocomplete="current-password">
     </div>
 
     <button onclick="login()">Login</button>
   </div>
 
   <div id="signupBox" class="hidden">
+
     <div class="input">
       <i data-lucide="user" class="leftIcon"></i>
-      <input id="name" placeholder="Full Name">
+      <input id="name" placeholder="Full Name" autocomplete="name">
     </div>
 
     <div class="input">
       <i data-lucide="at-sign" class="leftIcon"></i>
-      <input id="username" placeholder="Username">
+      <input id="username" placeholder="Username" autocomplete="username">
     </div>
 
     <div class="input">
@@ -77,25 +78,26 @@
 
     <div class="input">
       <i data-lucide="mail" class="leftIcon"></i>
-      <input id="email" type="email" placeholder="Email">
+      <input id="email" type="email" placeholder="Email" autocomplete="email">
     </div>
 
     <div class="input">
       <i data-lucide="lock" class="leftIcon"></i>
-      <input id="pass" type="password" placeholder="Password">
+      <input id="pass" type="password" placeholder="Password" autocomplete="new-password">
     </div>
 
     <div class="input">
       <i data-lucide="shield-check" class="leftIcon"></i>
-      <input id="confirmPass" type="password" placeholder="Confirm Password">
+      <input id="confirmPass" type="password" placeholder="Confirm Password" autocomplete="new-password">
     </div>
 
     <button onclick="signup()">Create Account</button>
   </div>
+
 </div>
 
 <script type="module" src="script.js"></script>
 
 </body>
-</html>
+        </html>
 
